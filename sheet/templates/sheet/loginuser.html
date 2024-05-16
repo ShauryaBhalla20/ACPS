@@ -1,0 +1,13 @@
+{% extends "sheet/base.html" %}
+
+{% block content %}
+    <h1>Login</h1>
+    <h3>{{error}}</h3>
+    <form method = "POST">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type = "submit">Login</button>
+    </form>
+
+    <h6>Don't have an account yet! <a href = {% url "signupuser" %}>Sign Up</a></h6>
+{% endblock %}

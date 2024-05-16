@@ -1,0 +1,42 @@
+{% extends "sheet/base.html" %}
+
+{%block content%}
+
+<div class="container custom-container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <form class="form-inline my-2 my-lg-0" method="POST" action="{% url 'signupuser' %}">
+                        {% csrf_token %}
+                        <input class="form-control mr-sm-2" type="Search" placeholder="{{user}}" aria-label="Search" name='handle' required>
+                        <input class="form-control mr-sm-2" type="number" placeholder="{{min_rating}}" aria-label="Search" name="min_rating" required>
+                        <input class="form-control mr-sm-2" type="number" placeholder="{{max_rating}}" aria-label="Search" name="max_rating" required>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go to Sheet</button>
+                    </form>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+
+<p></p>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="list-group text-center">
+                {% for problem in problems %}
+                    {% if problem.problem_id in ac %}
+                        <a href="{{problem.link}}" class="list-group-item list-group-item-action list-group-item-success">{{problem.name}}</a>
+                    {% elif problem.problem_id in nac %}
+                        <a href="{{problem.link}}" class="list-group-item list-group-item-action list-group-item-danger">{{problem.name}}</a>
+                    {% else %}
+                        <a href="{{problem.link}}" class="list-group-item list-group-item-action">{{problem.name}}</a>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

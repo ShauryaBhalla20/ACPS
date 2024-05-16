@@ -1,0 +1,44 @@
+{% extends "sheet/base.html" %}
+
+{% block content %}
+
+<div class="container custom-container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                {% if error %}
+                    <div class="alert alert-danger error-message text-white" role="alert">
+                        {{error}}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container custom-container">
+    <div class="row">
+        <div class="col">
+            <div class="d-flex justify-content-center">
+                <form method = "POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="zzz">Codeforces Handle</label>
+                        <input class="form-control mr-sm-2" type="Search" aria-label="Search" name='handle' id="zzz" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zzb">Minimum Difficulty</label>
+                        <input class="form-control mr-sm-2" type="number" placeholder="800" aria-label="Search" name="min_rating" id="zzb" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="zzc">Maximum Difficulty</label>
+                        <input class="form-control mr-sm-2" type="number" placeholder="3500" name="max_rating" id="zzc" required>
+                    </div>
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Go to Sheet</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
